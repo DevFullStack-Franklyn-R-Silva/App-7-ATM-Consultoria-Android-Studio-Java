@@ -57,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void enviarEmail(){
 
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:82999915558"));
+
+        String celular = "tel:82999915558";
+        String imagem = "https://static.wikia.nocookie.net/marvel/images/b/bc/Thanos_%28Earth-199999%29_from_Avengers_Infinity_War_-_The_Official_Movie_Special_001.jpg/revision/latest?cb=20190503185709&path-prefix=pt-br";
+        String endereco = "https://www.google.com/maps?q=arapiraca&rlz=1C1CHZN_pt-BRBR993BR993&um=1&ie=UTF-8&sa=X&ved=2ahUKEwj3wJqE4uD5AhVHvJUCHah7BEoQ_AUoAXoECAQQAw";
+//        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(celular));
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imagem));
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(endereco));
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
         startActivity(intent);
 
 
