@@ -1,21 +1,17 @@
 package com.hadesfranklyn.atmconsultoria;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
 import com.hadesfranklyn.atmconsultoria.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,19 +51,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    public void enviarEmail(){
-
-
-        String celular = "tel:82999915558";
-        String imagem = "https://static.wikia.nocookie.net/marvel/images/b/bc/Thanos_%28Earth-199999%29_from_Avengers_Infinity_War_-_The_Official_Movie_Special_001.jpg/revision/latest?cb=20190503185709&path-prefix=pt-br";
-        String endereco = "https://www.google.com/maps?q=arapiraca&rlz=1C1CHZN_pt-BRBR993BR993&um=1&ie=UTF-8&sa=X&ved=2ahUKEwj3wJqE4uD5AhVHvJUCHah7BEoQ_AUoAXoECAQQAw";
-//        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(celular));
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imagem));
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(endereco));
+    public void enviarEmail() {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
-        startActivity(intent);
 
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"atendimento@atmconsultoria.com.br"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo app");
+        intent.putExtra(Intent.EXTRA_TEXT, "Mensagem automática");
+
+        // https://www.sitepoint.com/mime-types-complete-list/
+        intent.setType("message/rfc822");
+//        intent.setType("text/plain");
+//        intent.setType("image/*");
+//        intent.setType("application/pdf");
+
+        startActivity(Intent.createChooser(intent, "Escolha um App de e-mail"));
 
     }
 
